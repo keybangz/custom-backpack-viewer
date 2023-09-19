@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 
 const BackpackView = () => {
   return (
@@ -7,31 +8,31 @@ const BackpackView = () => {
         <p className="flex p-2">Pick a class: </p>
         <ul className="flex flex-grow flex-row">
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Scout</button>
+            <Link href="/class/scout" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Scout</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Soldier</button>
+            <Link href="/class/soldier" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Soldier</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Pyro</button>
+            <Link href="/class/pyro" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Pyro</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Demoman</button>
+            <Link href="/class/demoman" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Demoman</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Heavy</button>
+            <Link href="/class/heavy" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Heavy</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Engineer</button>
+            <Link href="/class/engineer" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Engineer</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Medic</button>
+            <Link href="/class/medic" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Medic</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Sniper</button>
+            <Link href="/class/sniper" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Sniper</Link>
           </li>
           <li className="p-2">
-            <button className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Spy</button>
+            <Link href="/class/spy" className="bg-[#34302d] hover:bg-[#c1a18a] p-3 rounded-full">Spy</Link>
           </li>
         </ul>
       </div>
