@@ -8,8 +8,7 @@ import Login from "../../components/login";
 import ClassSelector from "./classSelector";
 import AdminPanel from "../../components/view/admin";
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from "@/app/api";
 
 // SteamID Convert Module
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
@@ -29,30 +28,16 @@ async function profile() {
     );
 
   const { user } = session;
+  const parse = user.email.replace("@steamcommunity.com", ""); // Remove email suffix
+  const steamId = steam.convertToText(parse); // Convert to SteamID32 for gameserver
 
-  let email: string = user?.email; // SteamID64 is stored in user email, we need it for later storing in MySQL DB
-  var parse: string = email.replace("@steamcommunity.com", ""); // Remove email suffix
-
-  var steamid = steam.convertToText(parse); // Convert to SteamID32 for gameserver
-
-  const userRole = await prisma.user.findUnique({
+  const isAdmin = await prisma.user.findFirst({
+    select: { role: true },
     where: {
-      steamId: steamid,
-    },
-    select: {
-      role: true,
+      steamId,
+      role: "ADMIN",
     },
   });
-
-  var showUserRole;
-  var isAdmin = false;
-  for (const [key, value] of Object.entries(userRole as Object)) {
-    showUserRole = value;
-    break;
-  }
-
-  if (showUserRole === "USER") isAdmin = false;
-  else if (showUserRole === "ADMIN") isAdmin = true;
 
   return (
     // Display user info and backpack if client is logged in.
@@ -68,7 +53,7 @@ async function profile() {
 export default profile;
 
 async function UserInfo() {
-  const session: any = await getServerSession();
+  const session = await getServerSession();
   // User info, if not logged in
   if (!session) {
     return (
@@ -93,28 +78,20 @@ async function UserInfo() {
     update: {},
     create: {
       steamId: steamid,
-      name: user?.name,
+      name: user.name,
       steamId64: parse,
       role: "USER",
-      avatar: user?.image,
+      avatar: user.image,
     },
   });
 
-  const userRole = await prisma.user.findUnique({
+  const isAdmin = await prisma.user.findFirst({
+    select: { role: true },
     where: {
       steamId: steamid,
-    },
-    select: {
-      role: true,
+      role: "ADMIN",
     },
   });
-
-  var showUserRole;
-
-  for (const [key, value] of Object.entries(userRole as Object)) {
-    showUserRole = value;
-    break;
-  }
 
   // If logged in, display name and profile image
   return (
@@ -136,7 +113,7 @@ async function UserInfo() {
           {steamid}
         </p>
         <p className="text-white text-2xl pl-5 font-mono font-bold flex float-none">
-          User Role: {showUserRole}
+          User Role: {isAdmin ? "ADMIN" : "USER"}
         </p>
       </div>
     </div>
