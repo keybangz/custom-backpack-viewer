@@ -21,9 +21,13 @@ Source Layout:
 
 ## Logged Out
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/daf9218c-e243-49b0-af1e-b36543719fd7)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/4832e5b5-c7c3-49c6-953b-5c466d6013f1)
 
 ## Logged In
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/94673a4c-fa30-4a62-bcd2-a56d19624909)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/cd087f43-553d-4084-a08b-b5f974563db4)
+
+## Class Preview
+
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/5507ebce-5a37-48f7-9d69-d2073173f369)
 
