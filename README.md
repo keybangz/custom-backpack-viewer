@@ -15,6 +15,7 @@ Source Layout:
 
 - [next-auth](https://next-auth.js.org/)
 - [next-auth-steam](https://github.com/Nekonyx/next-auth-steam)
+- [steamidconvert](https://www.npmjs.com/package/steamidconvert)
 
 # Preview
 
@@ -24,4 +25,5 @@ Source Layout:
 
 ## Logged In
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/049993f5-de5a-4897-8f27-5b785dffa2d8)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/94673a4c-fa30-4a62-bcd2-a56d19624909)
+
