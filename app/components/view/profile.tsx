@@ -2,15 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Components related to client use
-import Login from '../../components/login'
-import { SignIn, SignOut } from "../../components/userState"; // Clients interact with these buttons, define them seperately as client rendered.
+import Login from "../../components/login";
 
 // Server-side components
-import Backpack from "../../components/view/backpack"
-import AdminPanel from '../../components/view/admin';
+import Backpack from "../../components/view/backpack";
+import AdminPanel from "../../components/view/admin";
 
 // SteamID Convert Module
-var steam = require('steamidconvert')(process.env.STEAM_SECRET!)
+var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
 
 // Get server side session token to ensure no client spoofing.
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
@@ -18,26 +17,26 @@ import { getServerSession } from "next-auth"; // Get auth token as represented o
 async function profile() {
   const session = await getServerSession();
 
-  if(!session) // Display login page if client is not logged in.
+  if (!session)
+    // Display login page if client is not logged in.
     return (
       <div className="flex flex-col items-center">
-        <Login/>
-        <SignIn /> 
+        <Login />
       </div>
-  )
+    );
 
-  return ( // Display user info and backpack if client is logged in.
-  // TODO: ADD USER TYPE, GAMESERVER PANEL HERE ETC
-    <div className="flex flex-col pt-5"> 
+  return (
+    // Display user info and backpack if client is logged in.
+    // TODO: ADD USER TYPE, GAMESERVER PANEL HERE ETC
+    <div className="flex flex-col pt-5">
       <UserInfo />
-      <Backpack/>
-      <AdminPanel/>
-      <UserManage />
+      <Backpack />
+      <AdminPanel />
     </div>
-  )
+  );
 }
 
-export default profile
+export default profile;
 
 async function UserInfo() {
   const session: any = await getServerSession();
@@ -70,19 +69,16 @@ async function UserInfo() {
         />
       )}
       <div className="flex flex-col">
-      <p className="text-white text-3xl pl-5 font-mono font-bold flex">
-        {user?.name}
-      </p>
-      <p className="text-white text-2xl pl-5 font-mono font-bold flex float-none">{steamid}</p>
+        <p className="text-white text-3xl pl-5 font-mono font-bold flex">
+          {user?.name}
+        </p>
+        <p className="text-white text-2xl pl-5 font-mono font-bold flex float-none">
+          {steamid}
+        </p>
+        <p className="text-white text-2xl pl-5 font-mono font-bold flex float-none">
+          User Role: PLACEHOLDER
+        </p>
       </div>
     </div>
   );
-}
-
-async function UserManage() {
-  const session = await getServerSession();
-  // Handle button client state if logged in or not
-  if (!session) return <SignIn />;
-
-  return <SignOut />;
 }

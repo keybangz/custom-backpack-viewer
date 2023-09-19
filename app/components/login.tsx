@@ -30,7 +30,7 @@ const LoginPage = () => {
         <div className="flex flex-col items-center font-mono mt-20 mr-20 ml-20">
           <h1 className="text-3xl text-white font-bold">Login</h1>
           <p className="text-white text-xl pt-2">
-            You can login below by using the Steam OpenID authentication system,
+            You can login with the Login with Steam button on the navigation bar using the Steam OpenID authentication system,
             this will allow the website to fetch & update any information we may
             have of the player already to ensure a player does not lose in-game
             items.

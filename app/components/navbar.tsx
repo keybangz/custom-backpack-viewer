@@ -1,8 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { SignIn, SignOut } from "./userState"; // Clients interact with these buttons, define them seperately as client rendered.
+import { getServerSession } from "next-auth"; // Get auth token as represented on server.
 
-const NavbarMain = () => {
+async function NavbarMain() {
+  const session = await getServerSession();
+
   return (
     <div>
       <nav className="bg-[#34302d] shadow-lg">
@@ -19,7 +23,10 @@ const NavbarMain = () => {
               [TF2] Custom Backpack Viewer
             </h1>
           </Link>
-          <ul className="flex flex-col pr-10 ">
+          <ul className="flex flex-row pr-10 ">
+            <li className="pr-5">
+              <UserManage/>
+            </li>
             <li>
               <Image
                 className="drop-shadow-2xl"
@@ -37,3 +44,13 @@ const NavbarMain = () => {
 };
 
 export default NavbarMain;
+
+<SignIn /> 
+
+async function UserManage() {
+  const session = await getServerSession();
+  // Handle button client state if logged in or not
+  if (!session) return <SignIn />;
+
+  return <SignOut />;
+}
