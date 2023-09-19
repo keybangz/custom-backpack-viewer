@@ -17,7 +17,7 @@ async function NavbarMain() {
               height="80"
               alt="icon"
             ></Image>
-            <h1 className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white drop-shadow-2xl">
+            <h1 className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white drop-shadow-2xl font-mono">
               [TF2] Custom Backpack Viewer
             </h1>
           </Link>
