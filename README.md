@@ -16,6 +16,7 @@ Source Layout:
 - [next-auth](https://next-auth.js.org/)
 - [next-auth-steam](https://github.com/Nekonyx/next-auth-steam)
 - [steamidconvert](https://www.npmjs.com/package/steamidconvert)
+- [Prisma](https://www.prisma.io/)
 
 # Preview
 
