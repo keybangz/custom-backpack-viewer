@@ -21,7 +21,7 @@ Source Layout:
 
 ## Logged Out
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/5899db5e-eb42-4d00-a9c6-efae5148458d)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/daf9218c-e243-49b0-af1e-b36543719fd7)
 
 ## Logged In
 
