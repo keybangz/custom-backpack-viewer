@@ -5,8 +5,6 @@ import { SignIn, SignOut } from "./userState"; // Clients interact with these bu
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
 
 async function NavbarMain() {
-  const session = await getServerSession();
-
   return (
     <div>
       <nav className="bg-[#34302d] shadow-lg">

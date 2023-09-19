@@ -5,8 +5,11 @@ import Image from "next/image";
 import Login from "../../components/login";
 
 // Server-side components
-import Backpack from "../../components/view/backpack";
+import ClassSelector from "./classSelector";
 import AdminPanel from "../../components/view/admin";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 // SteamID Convert Module
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
@@ -15,7 +18,7 @@ var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
 
 async function profile() {
-  const session = await getServerSession();
+  const session: any = await getServerSession();
 
   if (!session)
     // Display login page if client is not logged in.
@@ -25,13 +28,39 @@ async function profile() {
       </div>
     );
 
+  const { user } = session;
+
+  let email: string = user?.email; // SteamID64 is stored in user email, we need it for later storing in MySQL DB
+  var parse: string = email.replace("@steamcommunity.com", ""); // Remove email suffix
+
+  var steamid = steam.convertToText(parse); // Convert to SteamID32 for gameserver
+
+  const userRole = await prisma.user.findUnique({
+    where: {
+      steamId: steamid,
+    },
+    select: {
+      role: true,
+    },
+  });
+
+  var showUserRole;
+  var isAdmin = false;
+  for (const [key, value] of Object.entries(userRole as Object)) {
+    showUserRole = value;
+    break;
+  }
+
+  if (showUserRole === "USER") isAdmin = false;
+  else if (showUserRole === "ADMIN") isAdmin = true;
+
   return (
     // Display user info and backpack if client is logged in.
     // TODO: ADD USER TYPE, GAMESERVER PANEL HERE ETC
     <div className="flex flex-col pt-5">
       <UserInfo />
-      <Backpack />
-      <AdminPanel />
+      <ClassSelector />
+      <div>{isAdmin ? <AdminPanel /> : <div />}</div>
     </div>
   );
 }
@@ -56,6 +85,37 @@ async function UserInfo() {
 
   var steamid = steam.convertToText(parse); // Convert to SteamID32 for gameserver
 
+  await prisma.user.upsert({
+    where: {
+      steamId: steamid,
+      steamId64: parse,
+    },
+    update: {},
+    create: {
+      steamId: steamid,
+      name: user?.name,
+      steamId64: parse,
+      role: "USER",
+      avatar: user?.image,
+    },
+  });
+
+  const userRole = await prisma.user.findUnique({
+    where: {
+      steamId: steamid,
+    },
+    select: {
+      role: true,
+    },
+  });
+
+  var showUserRole;
+
+  for (const [key, value] of Object.entries(userRole as Object)) {
+    showUserRole = value;
+    break;
+  }
+
   // If logged in, display name and profile image
   return (
     <div className="flex w-screen pl-5 flex-row items-center">
@@ -76,7 +136,7 @@ async function UserInfo() {
           {steamid}
         </p>
         <p className="text-white text-2xl pl-5 font-mono font-bold flex float-none">
-          User Role: PLACEHOLDER
+          User Role: {showUserRole}
         </p>
       </div>
     </div>
