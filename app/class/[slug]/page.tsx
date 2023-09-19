@@ -2,7 +2,23 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 
-export default function ClassPage({ params }: { params: { slug: string } }) {
+import { getServerSession } from "next-auth"; // Get auth token as represented on server.
+
+export default async function ClassPage({ params }: { params: { slug: string } }) {
+  const session = await getServerSession();
+  // If client has logged out whilst editing loadout, show them this for now.
+  // FIXME: Redirect back to login page.
+  if(!session) {
+    return (
+      <div>
+        <Navbar/>
+        <p className="flex text-3xl p-20 w-1/2 text-white font-mono">ERROR: User not logged into webpanel!</p>
+        <Footer/>
+      </div>
+    )
+  }
+
+  // If client logged in, show edit loadout slug for class.
   return (
     <div className="overflow-hidden">
       <Navbar />
