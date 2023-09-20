@@ -10,15 +10,79 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Users Table
+// steamId - id matching gameserver
+// name: - steam client name
+// serverId64 - steam client ID 64
+// avatar: link to avatar
+// role: role on web panel, either user or admin (gameserver administrator)
 model User {
-  steamId String @id
-  name String
+  steamId   String   @id
+  name      String
   steamId64 String
-  avatar String
+  avatar    String
+  role      UserRole @default(USER)
 
-  role UserRole @default(USER)
+  weapons Weapon[]
 }
 
+// Servers Table
+// id - id given by web panel.
+// serverIdentifier - unique server id which can be any string
+// serverName - server name stored into database.
+// serverIp - server ip stored into database for reading later.
+// createdAt - time for logging.
+// updatedAt - time for logging.
+model Server {
+  id               Int      @id @default(autoincrement())
+  serverIdentifier String   @unique
+  serverName       String
+  serverIp         String
+  createdAt        DateTime @default(now()) @map(name: "created_at")
+  updatedAt        DateTime @updatedAt @map(name: "updated_at")
+
+  weapons WeaponInServer[]
+}
+
+model WeaponInServer {
+  serverId Int
+  server   Server @relation(fields: [serverId], references: [id])
+
+  weaponId Int
+  weapon   Weapon @relation(fields: [weaponId], references: [id])
+
+  @@id([serverId, weaponId])
+}
+
+// Weapon Table
+// id - id given by web panel.
+// weaponId - id matches weapons.txt on gameserver.
+// weaponName - name matches weapons.txt on gameserver.
+// weaponClass - name given for sorting purposes on webpanel.
+// weaponAttributes - json object of attributes given by gameserver.
+model Weapon {
+  id               Int      @id @default(autoincrement())
+  weaponId         String   @unique
+  weaponName       String
+  weaponClass      String
+  weaponAttributes Json
+  createdAt        DateTime @default(now()) @map(name: "created_at")
+  updatedAt        DateTime @updatedAt @map(name: "updated_at")
+
+  userId String
+  user   User   @relation(fields: [userId], references: [steamId])
+
+  WeaponInServer WeaponInServer[]
+}
+
+// Weapons the client has
+// - Backpack inventory system
+
+// Weapons that the gameserver administrator panel
+
+// UserRole
+// Dictates what role the user has in the authentication system
+// TODO: Add MOD / INGAME_ADMIN and WEBPANEL_ADMIN
 enum UserRole {
   ADMIN
   USER
