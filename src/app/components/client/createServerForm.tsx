@@ -25,22 +25,29 @@ const CreateServerForm = () => {
     return res;
   };
 
+  // Regex pattern for stripped URL's (without https:// or www.) and IPv32 addresses
+  const ValidHostnameRegex =
+    /^((?!www.)(?!ww.)(?:(?!-)[A-Za-z0-9-]+\.[a-z]+)(?:\/[A-Za-z0-9-_]+\/?)*(?:[?&][A-Za-z0-9-\=\+_]+)*(?:\.[a-z]+)*)$|^((?:\d{1,3}\.){3}\d{1,3}(?:\:\d+)?)$/;
+
   return (
     <div className="">
       <ToastContainer />
       <form onSubmit={handleSubmit(addServer)}>
         <input
-          {...register("serverIdentifier", { required: true, maxLength: 20 })}
+          {...register("serverIdentifier", { required: true, maxLength: 40 })}
           placeholder="Server Identifier"
           className="block text-gray-700 text-2xl font-bold mb-2 text-center"
         />
         <input
-          {...register("serverName", { required: true, maxLength: 20 })}
+          {...register("serverName", { required: true, maxLength: 40 })}
           placeholder="Server Name"
           className="block text-gray-700 text-2xl font-bold mb-2 text-center"
         />
         <input
-          {...register("serverIP", { required: true, maxLength: 20 })}
+          {...register("serverIP", {
+            required: true,
+            pattern: ValidHostnameRegex,
+          })}
           placeholder="Server IP"
           type="text"
           className="block text-gray-700 text-2xl font-bold mb-2 text-center"

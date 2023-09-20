@@ -78,11 +78,8 @@ async function AddGameServersPage() {
                 </p>
                 {server.map((srv: any) => {
                   return (
-                    <div
-                      key={srv}
-                      className="m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]"
-                    >
-                      <div className="text-2xl font-bold">
+                    <div className="m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]">
+                      <div key={srv} className="text-2xl font-bold">
                         {srv.serverIdentifier}
                       </div>
                       <div className="text-xl">{srv.serverName}</div>

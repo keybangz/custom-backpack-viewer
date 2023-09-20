@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import prisma from "../index";
+import { prisma } from "../index";
 
 // List servers at GET endpoint /api/servers
 export async function GET(req: Request) {
