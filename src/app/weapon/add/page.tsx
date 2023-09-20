@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Navbar from "../../components/navbar";
 import CreateWeaponForm from "../../components/client/createWeaponForm";
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
@@ -54,7 +55,7 @@ async function AddWeaponPage() {
   return (
     <div className="">
       <Navbar />
-      <div className="bg-black text-white opacity-75 mt-2">
+      <div className="bg-black text-white opacity-75 mt-2 h-screen">
         <div className="flex flex-col ">
           <p className="text-3xl font-mono font-bold text-center mt-5 ">
             Custom Weapon Manager
@@ -70,14 +71,17 @@ async function AddWeaponPage() {
                   Syntax: (weaponId) - (weaponName) - (weaponClassName)
                 </p>
                 {weapon.map((wep: any) => {
+                  var wepLink = "/weapon/" + wep.weaponId;
                   return (
                     <div
                       key={wep}
                       className="m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]"
                     >
-                      <div className="text-2xl font-bold">{wep.weaponId}</div>
-                      <div className="text-xl">{wep.weaponName}</div>
-                      <div className="italic">{wep.weaponClass}</div>
+                      <Link href={wepLink}>
+                        <div className="text-2xl font-bold">{wep.weaponId}</div>
+                        <div className="text-xl">{wep.weaponName}</div>
+                        <div className="italic">{wep.weaponClass}</div>
+                      </Link>
                     </div>
                   );
                 })}

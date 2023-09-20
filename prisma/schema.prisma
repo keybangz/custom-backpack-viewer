@@ -59,20 +59,28 @@ model WeaponInServer {
 // weaponId - id matches weapons.txt on gameserver.
 // weaponName - name matches weapons.txt on gameserver.
 // weaponClass - name given for sorting purposes on webpanel.
-// weaponAttributes - json object of attributes given by gameserver.
 model Weapon {
-  id               Int      @id @default(autoincrement())
-  weaponId         String   @unique
-  weaponName       String
-  weaponClass      String
-  weaponAttributes Json
-  createdAt        DateTime @default(now()) @map(name: "created_at")
-  updatedAt        DateTime @updatedAt @map(name: "updated_at")
+  id          Int      @id @default(autoincrement())
+  weaponId    String   @unique
+  weaponName  String
+  weaponClass String
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
   userId String
   user   User   @relation(fields: [userId], references: [steamId])
 
-  WeaponInServer WeaponInServer[]
+  WeaponInServer   WeaponInServer[]
+  WeaponAttributes WeaponAttributes[]
+}
+
+model WeaponAttributes {
+  id             Int    @id @default(autoincrement())
+  attributeId    String
+  attributeValue String
+
+  weaponId Int
+  weapon   Weapon @relation(fields: [weaponId], references: [id])
 }
 
 // Weapons the client has

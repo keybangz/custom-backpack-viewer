@@ -53,7 +53,7 @@ export async function POST(req: Request, res: Response) {
         weaponId: weaponId,
         weaponName: weaponName,
         weaponClass: weaponClass,
-        weaponAttributes: {},
+        WeaponAttributes: {},
         userId: steamid,
       },
     });
