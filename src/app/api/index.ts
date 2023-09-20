@@ -1,8 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import { CWX } from "./util/CWX";
 
-const prisma = new PrismaClient();
-export default prisma;
+const prismaClientSingleton = () => {
+  return new PrismaClient()
+}
+
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClientSingleton | undefined
+}
+
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
+export default prisma
 
 /*
 "Items" // section

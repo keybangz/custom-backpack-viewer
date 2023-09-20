@@ -38,7 +38,7 @@ export async function POST(req: Request, res: Response) {
 
     if (existing)
       return NextResponse.json(
-        { message: `A server @ ${serverIdentifier} already exists!` },
+        { message: `A server @ ID: ${serverIdentifier} already exists!` },
         { status: 409 }
       );
 
