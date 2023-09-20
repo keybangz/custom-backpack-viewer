@@ -4,11 +4,10 @@
 - **This README is intended to document everything in the project including it's aim, implementation, important details and design visions.**
 
 Source Layout:
-- `/app` - Entire project structure.
+- `/src/app/` - Root project structure.
 - `/app/api/auth/[...nextauth]/route.tsx` - NextAuth Steam Provider initialization.
-- `/app/components` - All components related to displaying the app, usually responsible for login view.
-- `/app/components/view` - All other functional view components. (Admin, backpack, profiles)
-- `/app/view.tsx` - Main component responsible for login view.
+- `/app/components` - All components related to displaying the app.
+- `/app/components/client` - All client side components.
 - `/app/users/page.tsx` - Demo fetching page
 
 # Dependencies
@@ -22,13 +21,24 @@ Source Layout:
 
 ## Logged Out
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/4832e5b5-c7c3-49c6-953b-5c466d6013f1)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/9aef9887-40a9-41c9-8d51-82ad6f9d535d)
 
 ## Logged In
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/f4c81b9c-a42b-4f9d-a788-aed9b592beac)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/b26eb4c6-17a3-4361-8766-8cfb7c7567f1)
 
 ## Class Preview
 
-![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/5507ebce-5a37-48f7-9d69-d2073173f369)
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/7d2c6455-abc5-410e-b7d6-09e3580a037b)
+
+## Gameserver Manager Preview
+
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/37049c91-95e8-4024-994f-84b40734575b)
+
+## Custom Weapon Manager Preview
+
+![image](https://github.com/keybangz/custom-backpack-viewer/assets/23132897/ec21d872-8267-4270-a511-ac97dac9d079)
+
+
+
 
