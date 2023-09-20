@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth"; // Get auth token as represented o
 import Navbar from "../../components/navbar";
 import CreateServerForm from "../../components/client/createServerForm";
 
-import prisma from "../../api/index";
+import { prisma } from "../../api/index";
 
 type SteamLibrary = {
   convertToText: (steamid: string) => string;

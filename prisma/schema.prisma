@@ -75,18 +75,12 @@ model Weapon {
 }
 
 model WeaponAttributes {
-  id             Int    @id @default(autoincrement())
   attributeId    String
   attributeValue String
 
-  weaponId Int
-  weapon   Weapon @relation(fields: [weaponId], references: [id])
+  weaponId String @id
+  weapon   Weapon @relation(fields: [weaponId], references: [weaponId])
 }
-
-// Weapons the client has
-// - Backpack inventory system
-
-// Weapons that the gameserver administrator panel
 
 // UserRole
 // Dictates what role the user has in the authentication system

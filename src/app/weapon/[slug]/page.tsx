@@ -1,5 +1,5 @@
 import React from "react";
-import prisma from "../../api/index";
+import { prisma } from "../../api/index";
 
 import Navbar from "../../components/navbar";
 import UpdateWeaponForm from "../../components/client/updateWeaponForm";
@@ -72,13 +72,15 @@ const WeaponEditPage = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="">
       <Navbar />
-      <div className="text-white font-mono bg-black opacity-75 h-screen pt-5 mt-2">
-        <p className="text-3xl font-mono font-bold text-center">
-          Editing Weapon: {wepId}
-        </p>
-        <p className="text-xl font-mono first-letter mt-5 ml-5 text-center">
-          Update the weapon's information below.
-        </p>
+      <div className="text-white font-mono bg-black opacity-75 h-screen p-5 mt-2">
+        <div className="">
+          <p className="text-3xl font-mono font-bold">
+            Editing Weapon: {wepId}
+          </p>
+          <p className="text-xl font-mono first-letter">
+            Update the weapon's information below.
+          </p>
+        </div>
         <div className="">
           {wepName && wepClassName && (
             <UpdateWeaponForm

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
 
-import prisma from "../api/index";
+import { prisma } from "../api/index";
 
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
 
@@ -52,22 +52,6 @@ async function GameserversPage() {
       serverIp: true,
     },
   });
-
-  function DrawServers() {
-    return (
-      <div className="">
-        {servers.map((server: any) => {
-          return (
-            <button key={server} className="font-mono flex flex-row text-white">
-              <p className="p-2 pr-10">{server.serverIdentifier}</p>
-              <p className="p-2 pr-10">{server.serverName}</p>
-              <p className="p-2 pr-10">{server.serverIp}</p>
-            </button>
-          );
-        })}
-      </div>
-    );
-  }
 
   return (
     <div className="text-white font-mono">

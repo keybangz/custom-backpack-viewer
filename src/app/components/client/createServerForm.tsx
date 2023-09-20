@@ -26,7 +26,7 @@ const CreateServerForm = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <ToastContainer />
       <form onSubmit={handleSubmit(addServer)}>
         <input

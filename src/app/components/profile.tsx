@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import prisma from "../api/index";
+import { prisma } from "../api/index";
 
 // Get server side session token to ensure no client spoofing.
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.

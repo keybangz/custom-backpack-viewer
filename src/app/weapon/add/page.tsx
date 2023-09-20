@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navbar from "../../components/navbar";
 import CreateWeaponForm from "../../components/client/createWeaponForm";
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
-import prisma from "../../api/index";
+import { prisma } from "../../api/index";
 
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
 

@@ -1,18 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { CWX } from "./util/CWX";
 
-const prismaClientSingleton = () => {
-  return new PrismaClient()
-}
+export const items_game = new CWX;
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined
-}
+export const prisma =
+  globalForPrisma.prisma || new PrismaClient()
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
-export default prisma
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 
 /*
 "Items" // section

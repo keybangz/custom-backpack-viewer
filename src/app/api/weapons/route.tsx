@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import prisma from "../index";
+import { prisma } from "../index";
 import { getServerSession } from "next-auth/next";
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
 
@@ -53,7 +53,12 @@ export async function POST(req: Request, res: Response) {
         weaponId: weaponId,
         weaponName: weaponName,
         weaponClass: weaponClass,
-        WeaponAttributes: {},
+        WeaponAttributes: {
+          create: {
+            attributeId: "None",
+            attributeValue: "None",
+          },
+        },
         userId: steamid,
       },
     });
