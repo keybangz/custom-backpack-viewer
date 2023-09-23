@@ -3,7 +3,6 @@ import Navbar from "../components/navbar";
 import Link from "next/link";
 
 import { getServerSession } from "next-auth"; // Get auth token as represented on server.
-
 import { prisma } from "../api/index";
 
 var steam = require("steamidconvert")(process.env.STEAM_SECRET!);
@@ -44,14 +43,6 @@ async function GameserversPage() {
       </div>
     );
   }
-
-  const servers = await prisma.server.findMany({
-    select: {
-      serverIdentifier: true,
-      serverName: true,
-      serverIp: true,
-    },
-  });
 
   return (
     <div className="text-white font-mono">

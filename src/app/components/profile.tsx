@@ -34,8 +34,6 @@ async function profile() {
   });
 
   return (
-    // Display user info and backpack if client is logged in.
-    // TODO: ADD USER TYPE, GAMESERdVER PANEL HERE ETC
     <div className="flex flex-col mt-2 bg-black text-white opacity-75 h-screen text-3xl font-mono">
       <UserInfo />
       <ClassSelector />

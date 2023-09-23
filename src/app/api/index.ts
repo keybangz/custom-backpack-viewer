@@ -11,6 +11,11 @@ if (process.env.NODE_ENV !== 'production')
 	globalForPrisma.prisma = prisma
 
 /*
+"Items": {
+	"subkey": {
+
+	}
+}
 "Items" // section
 {
 	"{afterburner-id}" // subsection - EACH WEAPON
@@ -50,9 +55,7 @@ as reinterpret_cast<type>(name)
 const num = 1
 comst str = num as unknown as string
 
-Blanket of type rules
-
-*/
+Blanket of type rule
 
 // Work from deepest SubKey to top level.
 // const attributes_game = new CWX
@@ -70,4 +73,4 @@ Blanket of type rules
 // const kv = new CWX
 // kv.setSubKey('Items', attributes)
 
-//console.log(kv.stringify());
+//console.log(kv.stringify());*/
