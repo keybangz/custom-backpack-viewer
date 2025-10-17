@@ -62,37 +62,32 @@ async function AddGameServersPage() {
     <div className="overflow-hidden text-white">
       <Navbar />
       <div className="bg-black text-white opacity-75 mt-2 h-screen">
-        <div className="flex flex-col ">
+        <div className="flex flex-col justify-center">
           <p className="text-3xl font-mono font-bold text-center mt-5 ">
             Gameserver Manager
           </p>
-          <p className="text-xl font-mono first-letter mt-5 ml-5 ">
+
+          <p className="text-xl font-mono first-letter mt-5 ml-5 text-center">
             Click on server entry to see server information.
           </p>
-          <div className="flex justify-between">
-            <div className="p-5 flex flex-wrap">
-              <div>
-                <p className="text-3xl font-mono font-bold">List Servers</p>
-                <p className="text-lg font-mono italic mb-5">
-                  Syntax: (serverIdentifier) - (serverName) - (serverIp)
-                </p>
-                {server.map((srv: any) => {
-                  return (
-                    <div className="m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]">
-                      <div key={srv} className="text-2xl font-bold">
-                        {srv.serverIdentifier}
-                      </div>
-                      <div className="text-xl">{srv.serverName}</div>
-                      <div className="italic">{srv.serverIp}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="p-5 items-center text-center">
-              <p className="text-3xl font-mono font-bold">Add Server</p>
-              <CreateServerForm />
-            </div>
+
+          <div className="p-5 m-5 items-center text-center flex flex-col justify-center">
+            <p className="text-3xl font-mono font-bold">Add Server</p>
+            <CreateServerForm />
+          </div>
+
+          <div className="flex flex-row justify-center">
+            {server.map((srv: any) => {
+              return (
+                <div className="flex flex-col m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]">
+                  <div key={srv} className="text-2xl font-bold">
+                    {srv.serverIdentifier}
+                  </div>
+                  <div className="text-xl">{srv.serverName}</div>
+                  <div className="italic">{srv.serverIp}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
