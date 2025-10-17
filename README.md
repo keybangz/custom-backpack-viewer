@@ -12,10 +12,30 @@ Source Layout:
 
 # Dependencies
 
+## External
+- [MariaDB/MySQL Database](https://mariadb.org/)
+
+## Node Modules
 - [next-auth](https://next-auth.js.org/)
 - [next-auth-steam](https://github.com/Nekonyx/next-auth-steam)
 - [steamidconvert](https://www.npmjs.com/package/steamidconvert)
 - [Prisma](https://www.prisma.io/)
+
+# Setup
+
+## MariaDB (Required)
+- Setup a MariaDB / MySQL server.
+- Create a database with a name of your choice.
+- Create a user & password with privileges to the new database.
+- Fill the connection details laid out in your `.env` file. 
+
+## Project
+- *Install [bun-runtime](https://bun.sh/)*
+- *Clone repository at your preferred directory*
+- *Enter `bun install` in the top-level project directory.*
+- *Copy `.env.example` to `.env` and fill as required.*
+- *Enter `prisma generate` && `prisma migrate dev` to ensure prisma establishes a connection to the MySQL server & automatically inputs the schema from the project.*
+- *Enter `bun run dev` to start the project & navigate to `https://localhost:3000` or the URL set in your `.env` file.*
 
 # Preview
 
