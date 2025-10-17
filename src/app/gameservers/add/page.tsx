@@ -79,8 +79,8 @@ async function AddGameServersPage() {
           <div className="flex flex-row justify-center">
             {server.map((srv: any) => {
               return (
-                <div className="flex flex-col m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]">
-                  <div key={srv} className="text-2xl font-bold">
+                <div key={srv} className="flex flex-col m-5 p-5 text-center bg-[#34302d] hover:bg-[#6b6a65]">
+                  <div className="text-2xl font-bold">
                     {srv.serverIdentifier}
                   </div>
                   <div className="text-xl">{srv.serverName}</div>

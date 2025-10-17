@@ -58,8 +58,8 @@ export default async function ClassPage({
   );
 }
 
-function DrawClass({ params }: { params: { slug: string } }) {
-  var slug = params.slug;
+async function DrawClass({ params }: { params: any }) { // lol
+  const { slug } = await params;
   if (slug === "scout") {
     return <div>Scout</div>;
   } else if (slug === "soldier") {

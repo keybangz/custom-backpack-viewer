@@ -50,7 +50,8 @@ const WeaponEditPage = async ({ params }: { params: { slug: string } }) => {
       </div>
     );
 
-  const wepId = params.slug.replace("%7B", "{").replace("%7D", "}");
+  const { slug } = await params;
+  const wepId = slug.replace("%7B", "{").replace("%7D", "}");
   const wepName = await prisma.weapon.findFirst({
     select: {
       weaponName: true,
